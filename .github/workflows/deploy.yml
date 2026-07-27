@@ -1,0 +1,23 @@
+name: Deploy to AWS EC2
+
+# main 브랜치에 코드가 push되면 실행
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # EC2 서버에 원격 SSH 접속하여 배포 명령어 실행
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/for-studying-deployment
+            git pull origin main
+            docker compose up -d --build
