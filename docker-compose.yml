@@ -32,6 +32,10 @@ services:
     restart: always
     ports:
       - "80:80" # 외부 80번 포트로 통합!
+      - "443:443" # 👈 HTTPS 포트 추가
+    volumes:
+      # 👈 EC2 호스트에 저장된 SSL 인증서를 Nginx 컨테이너 내부로 마운트 (읽기 전용 :ro)
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
 
