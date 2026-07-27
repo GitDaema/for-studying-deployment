@@ -1,29 +1,23 @@
 version: '3.8'
 
 services:
-  # 1. DB 컨테이너 (MySQL 8.0)
   db:
     image: mysql:8.0
     container_name: my-app-db
     restart: always
-    # 👇 [추가] MySQL 서버 실행 시 UTF-8 인코딩 강제 적용
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: myapp
-    ports:
-      - "3306:3306"
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db_data:/var/lib/mysql
 
-  # (backend 및 frontend 설정은 기존과 동일)
   backend:
     build: ./backend
     container_name: my-app-backend
     restart: always
-    ports:
-      - "5000:5000"
+    # ports: 항목 제거! (외부에 5000번 포트를 직접 노출하지 않고 Docker 내부망 통신만 이용)
     environment:
       DB_HOST: db
       DB_USER: root
@@ -37,7 +31,7 @@ services:
     container_name: my-app-frontend
     restart: always
     ports:
-      - "8080:80"
+      - "80:80" # 외부 80번 포트로 통합!
     depends_on:
       - backend
 

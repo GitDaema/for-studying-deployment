@@ -1,6 +1,9 @@
 FROM nginx:alpine
 
-# Nginx의 기본 웹 ROOT 디렉토리로 index.html 복사
+# Custom Nginx 설정 파일 복사
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# HTML 파일 복사
 COPY index.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
