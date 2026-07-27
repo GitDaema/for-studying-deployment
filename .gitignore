@@ -10,3 +10,6 @@ backend/node_modules/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# 환경 변수 보안 파일 (GitHub 업로드 금지)
+.env
