@@ -1,0 +1,12 @@
+# 1. 의존성 패키지 (용량이 크고 Docker 빌드 시 내부에서 재설치되므로 제외)
+node_modules/
+backend/node_modules/
+
+# 2. 보안키 및 환경 변수 파일 (GitHub에 올라가면 절대 안 됨)
+*.pem
+.env
+
+# 3. OS 및 에디터 임시 파일
+.DS_Store
+Thumbs.db
+.vscode/
