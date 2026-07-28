@@ -3,8 +3,11 @@ SET NAMES utf8mb4;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    role VARCHAR(50) NOT NULL
-) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    role VARCHAR(50) NOT NULL,
+    phone VARCHAR(20) DEFAULT '010-0000-0000'
+);
 
-INSERT INTO users (name, role) VALUES ('김배포', 'DevOps');
-INSERT INTO users (name, role) VALUES ('이개발', 'Backend');
+INSERT INTO users (name, role, phone) VALUES 
+('김배포', 'DevOps', '010-1234-5678'),
+('이개발', 'Backend', '010-9876-5432')
+ON DUPLICATE KEY UPDATE id=id;
