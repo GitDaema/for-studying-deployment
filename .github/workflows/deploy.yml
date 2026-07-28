@@ -20,4 +20,5 @@ jobs:
           script: |
             cd ~/for-studying-deployment
             git pull origin main
+            echo "${{ secrets.ENV_FILE }}" > backend/.env
             docker compose up -d --build
