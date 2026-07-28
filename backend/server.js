@@ -1,6 +1,3 @@
-// 의도적 장애 테스트용 코드
-throw new Error("🚨 [EMERGENCY] 백엔드 심각한 장애 발생!");
-
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
