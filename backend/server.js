@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// process.env를 통해 환경 변수를 불러옵니다.
+// process.env를 통해 환경 변수를 불러옵니다. 상단 헤더 업데이트했다고 가정
 const PORT = process.env.PORT || 5000;
 
 const db = mysql.createConnection({
